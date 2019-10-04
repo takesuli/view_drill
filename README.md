@@ -1,5 +1,4 @@
 # README
-
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
@@ -15,12 +14,13 @@ Things you may want to cover:
 ## usersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|nickname|text|null: false|
+|nickname|string|null: false|
 |email|string|null: false|
 |password|string|null: false|
 ### Association
 - has_many :messages
 - has_many :users_groups
+- has_many :groups, though: :users_groups
 
 ## users_groupsテーブル
 |Column|Type|Options|
@@ -28,28 +28,29 @@ Things you may want to cover:
 |users_id|integer|null: false ,foreign_key: true|
 |groups_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs_to :user
-- belongs_to :group
+- belong_to :user
+- belong_to :group
 
 ## groupsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|group_name|integer|null: false|
+|name|integer|null: false|
 ### Association
 - has_many :users_groups
 - has_many :messages
+- has_many :users, though: :users_groups
 
 ## messagesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|image|text|null: false|
-|text|text|null: false|
+|image|text|
+|text|text|
 |users_id|integer|null: false, foreign_key: true|
 |groups_id|integer|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :users
-- belongs_to :groups
+- belong_to :user
+- belong_to :group
 
 
 * Database initialization
