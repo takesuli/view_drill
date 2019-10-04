@@ -12,6 +12,45 @@ Things you may want to cover:
 * Configuration
 
 * Database creation
+## usersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|nickname|text|null: false|
+|email|string|null: false|
+|password|string|null: false|
+### Association
+- has_many :messages
+- has_many :users_groups
+
+## users_groupsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|users_id|integer|null: false ,foreign_key: true|
+|groups_id|integer|null: false, foreign_key: true|
+### Association
+- belongs_to :user
+- belongs_to :group
+
+## groupsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|group_name|integer|null: false|
+### Association
+- has_many :users_groups
+- has_many :messages
+
+## messagesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|image|text|null: false|
+|text|text|null: false|
+|users_id|integer|null: false, foreign_key: true|
+|groups_id|integer|null: false, foreign_key: true|
+
+### Association
+- belongs_to :users
+- belongs_to :groups
+
 
 * Database initialization
 
